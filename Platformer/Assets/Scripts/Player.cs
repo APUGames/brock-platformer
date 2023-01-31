@@ -7,12 +7,18 @@ public class Player : MonoBehaviour
 
     Rigidbody2D playerCharacter;
     Animator playerAnimator;
+    Collider2D playerCollider;
 
     [Tooltip("Change this value to change the run speed")]
     [SerializeField] float runSpeed = 5.0f;
 
     [Tooltip("Change this value to change the jump height")]
-    [SerializeField] float jumpHeight = 5.0f;
+    [SerializeField] float jumpSpeed = 5.0f;
+
+    [Tooltip("Change this value to change the climb speed")]
+    [SerializeField] float climbSpeed = 5.0f;
+
+    private float gravityScaleAtStart;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +26,10 @@ public class Player : MonoBehaviour
 
         playerCharacter = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
+        playerCollider = GetComponent<Collider2D>();
+
+        //Store Gravity Scale on start
+        gravityScaleAtStart = playerCharacter.gravityScale;
 
     }
 
@@ -29,7 +39,8 @@ public class Player : MonoBehaviour
 
         Run();
         FlipSprite();
-        
+        Jump();
+        Climb();
 
     }
 
@@ -44,6 +55,8 @@ public class Player : MonoBehaviour
 
         playerCharacter.velocity = runVelocity;
 
+        print(runVelocity);
+
         //checks to see if the speed is higher than zero (if then statement in one line)
         bool hSpeed = Mathf.Abs(playerCharacter.velocity.x) > Mathf.Epsilon;
         playerAnimator.SetBool("run", hSpeed);
@@ -57,9 +70,21 @@ public class Player : MonoBehaviour
 
         float jump = Input.GetAxis("Jump");
 
-        Vector2 jumpVelocity = new Vector2(jump * runSpeed, playerCharacter.velocity.y);
+        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
 
-        playerCharacter.velocity = jumpVelocity;
+            return;
+
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+
+            Vector2 jumpVelocity = new Vector2(0.0f, jumpSpeed);
+
+            playerCharacter.velocity += jumpVelocity;
+
+        }
 
     }
 
@@ -80,6 +105,36 @@ public class Player : MonoBehaviour
         }
 
         
+
+    }
+
+    private void Climb()
+    {
+
+        if (!playerCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+
+            playerAnimator.SetBool("climb", false);
+
+            playerCharacter.gravityScale = gravityScaleAtStart;
+
+            return;
+
+        }
+
+        float vMovement = Input.GetAxis("Vertical");
+
+        //x remains the same we need to change y
+
+        Vector2 climbVelocity = new Vector2(playerCharacter.velocity.x, vMovement * climbSpeed);
+
+        playerCharacter.velocity = climbVelocity;
+
+        playerCharacter.gravityScale = 0.0f;
+
+        bool vSpeed = Mathf.Abs(playerCharacter.velocity.y) > Mathf.Epsilon;
+        
+        playerAnimator.SetBool("climb", vSpeed);
 
     }
 
