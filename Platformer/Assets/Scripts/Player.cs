@@ -21,6 +21,12 @@ public class Player : MonoBehaviour
 
     private float gravityScaleAtStart;
 
+    private bool isAlive = true;
+
+    [SerializeField] Vector2 deathSeq = new Vector2(1f, 5f);
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,11 +44,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive)
+        {
+
+            return;
+
+        }
 
         Run();
         FlipSprite();
         Jump();
         Climb();
+        Die();
 
     }
 
@@ -56,8 +69,6 @@ public class Player : MonoBehaviour
         Vector2 runVelocity = new Vector2(hMovement * runSpeed, playerCharacter.velocity.y);
 
         playerCharacter.velocity = runVelocity;
-
-        print(runVelocity);
 
         //checks to see if the speed is higher than zero (if then statement in one line)
         bool hSpeed = Mathf.Abs(playerCharacter.velocity.x) > Mathf.Epsilon;
@@ -106,8 +117,6 @@ public class Player : MonoBehaviour
 
         }
 
-        
-
     }
 
     private void Climb()
@@ -119,6 +128,8 @@ public class Player : MonoBehaviour
             playerAnimator.SetBool("climb", false);
 
             playerCharacter.gravityScale = gravityScaleAtStart;
+
+            runSpeed = 5.0f;
 
             return;
 
@@ -134,9 +145,29 @@ public class Player : MonoBehaviour
 
         playerCharacter.gravityScale = 0.0f;
 
+        runSpeed = 2.5f;
+
         bool vSpeed = Mathf.Abs(playerCharacter.velocity.y) > Mathf.Epsilon;
         
         playerAnimator.SetBool("climb", vSpeed);
+
+    }
+
+    private void Die()
+    {
+
+        if (playerBodyCollider.IsTouchingLayers(LayerMask.GetMask("Water", "Enemy")))
+        {
+
+            isAlive = false;
+
+            playerAnimator.SetTrigger("die");
+
+            playerCharacter.velocity = deathSeq;
+
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
+
+        }
 
     }
 

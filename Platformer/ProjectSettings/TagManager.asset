@@ -16,10 +16,10 @@ TagManager:
   - Player
   - Background
   - Enemy
-  - 
-  - 
-  - 
-  - 
+  - Fire Power
+  - Ice Power
+  - Key
+  - Exit
   - 
   - 
   - 
@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 93590121
     locked: 0
+  - name: Collectibles
+    uniqueID: 1534125719
+    locked: 0
   - name: Water
     uniqueID: 3145566605
     locked: 0
@@ -61,7 +64,4 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 763918741
-    locked: 0
-  - name: Collectibles
-    uniqueID: 1534125719
     locked: 0
