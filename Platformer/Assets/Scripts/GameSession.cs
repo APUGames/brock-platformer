@@ -2,33 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
 
     [SerializeField] int playerLives = 3;
-
-    private void Awake()
-    {
-
-        //Find number of similar objects in the scene
-        int numGameSessions = FindObjectsOfType<GameSession>().Length;
-
-        if (numGameSessions > 1)
-        {
-
-            Destroy(gameObject);
-
-        }
-        else
-        {
-
-            //If scene reloads, Singleton won't be destroyed
-            DontDestroyOnLoad(gameObject);
-
-        }
-
-    }
+    [SerializeField] Text lives;
 
     public void ProcessPlayerDeath()
     {
@@ -80,6 +60,8 @@ public class GameSession : MonoBehaviour
 
             SceneManager.LoadScene(currentSceneIndex);
 
+            lives.text = playerLives.ToString();
+
         }
         else
         {
@@ -87,6 +69,13 @@ public class GameSession : MonoBehaviour
             SceneManager.LoadScene(0);
 
         }
+
+    }
+
+    private void Start()
+    {
+
+        lives.text = playerLives.ToString(); //will convert number to text
 
     }
 

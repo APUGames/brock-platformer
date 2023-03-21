@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
         float jump = Input.GetAxis("Jump");
 
-        if (!playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (!playerFeetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "Frozen Water", "Ice")))
         {
 
             return;

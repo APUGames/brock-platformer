@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 274112862659882066}
   - component: {fileID: 274112862659882077}
   - component: {fileID: 9003284792885164039}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274112862659882079}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -25.9, y: 5.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &274112862659882067
 SpriteRenderer:
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1534125719
-  m_SortingLayer: 8
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -334984232, guid: f61c2c86172884041bee3dc823412561, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,3 +145,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f44ed33d184b7d4cb80366e06d26046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePickupSFX: {fileID: 0}
+  fireUseSFX: {fileID: 0}
+  icePickupSFX: {fileID: 0}
+  iceUseSFX: {fileID: 0}
+  keyPickupSFX: {fileID: 0}
+  keyUseSFX: {fileID: 0}
+  deadSFX: {fileID: 0}
+  jumpSFX: {fileID: 0}
+  doorJamSFX: {fileID: 0}
+  doorUnlockSFX: {fileID: 0}
+  meltIceSFX: {fileID: 0}
+  freezeWaterSFX: {fileID: 0}
+  hasFire: 0
+  hasIce: 0
+  hasKey: 0

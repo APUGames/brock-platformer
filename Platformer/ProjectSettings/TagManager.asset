@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - IcePower
+  - IceBlock
+  - KeyDoor
   layers:
   - Default
   - TransparentFX
@@ -20,9 +23,9 @@ TagManager:
   - Ice Power
   - Key
   - Exit
-  - 
-  - 
-  - 
+  - Key Door
+  - Ice Object
+  - Frozen Water
   - 
   - 
   - 
@@ -56,7 +59,7 @@ TagManager:
   - name: Foreground
     uniqueID: 1545651747
     locked: 0
-  - name: Foreground Fixes
+  - name: Frozen Water
     uniqueID: 1705312721
     locked: 0
   - name: Player
@@ -64,4 +67,10 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 763918741
+    locked: 0
+  - name: Key Door
+    uniqueID: 3259629801
+    locked: 0
+  - name: Ice Object
+    uniqueID: 4215542603
     locked: 0
