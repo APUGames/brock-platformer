@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ice : MonoBehaviour
 {
@@ -21,8 +22,8 @@ public class Ice : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-       
+
+        
 
     }
 
@@ -33,10 +34,29 @@ public class Ice : MonoBehaviour
 
         if (iceTrue)
         {
-
-            Debug.Log(this.gameObject);
             
             ice.SetActive(true);
+
+            Lv5();
+
+        }
+
+    }
+
+    private void Lv5()
+    {
+
+        GameObject faker = new GameObject();
+        faker = this.gameObject;
+        
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        string sceneName = currentScene.name;
+
+        if (sceneName == "Level 5")
+        {
+
+            faker.SetActive(false);
 
         }
 
