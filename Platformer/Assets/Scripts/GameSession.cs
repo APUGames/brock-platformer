@@ -60,7 +60,7 @@ public class GameSession : MonoBehaviour
 
             SceneManager.LoadScene(currentSceneIndex);
 
-            lives.text = playerLives.ToString();
+            //lives.text = playerLives.ToString();
 
         }
         else
@@ -75,7 +75,7 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
 
-        lives.text = playerLives.ToString(); //will convert number to text
+        //lives.text = playerLives.ToString(); //will convert number to text
 
     }
 
